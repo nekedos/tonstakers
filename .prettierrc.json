@@ -1,0 +1,23 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "endOfLine": "auto",
+  "importOrder": [
+    "<TYPES>^(node:)",
+    "<TYPES>",
+    "<TYPES>^[.]",
+    "<BUILTIN_MODULES>",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "",
+    "^[.]",
+    ""
+  ],
+  "bracketSpacing": true,
+  "trailingComma": "es5",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrderParserPlugins": ["importAssertions", "typescript", "jsx"],
+  "importOrderTypeScriptVersion": "5.6.3",
+  "importOrderCaseSensitive": false
+}
