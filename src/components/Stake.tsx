@@ -46,7 +46,7 @@ export const Stake = () => {
       }
       tonConnectButton={<TonConnectButton />}
       tabs={
-        tonStakers && (
+        connected && (
           <Tabs
             variant="fullWidth"
             scrollButtons={false}

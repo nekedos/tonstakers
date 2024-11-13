@@ -24,7 +24,7 @@ const theme = createTheme({
 export const App = () => (
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <TonConnectUIProvider manifestUrl="https://nekedos.github.io/tonstakers/tonconnect-manifest.json">
+      <TonConnectUIProvider manifestUrl={import.meta.env.VITE_MANIFEST_URL}>
         <QueryClientProvider client={queryClient}>
           <Stake />
         </QueryClientProvider>
