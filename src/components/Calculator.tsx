@@ -49,6 +49,7 @@ export const Calculator = ({ min, max, onSubmit, tsTonRate, mode }: CalculatorPr
                 <Button
                   type="button"
                   variant="text"
+                  disabled={max === 0}
                   onClick={() => {
                     if (mode === 'stake') {
                       return setAmount(max < 1 ? 1 : max);
