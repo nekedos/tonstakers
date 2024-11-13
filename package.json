@@ -2,6 +2,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://nekedos.github.io/tonstakers/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
