@@ -78,7 +78,7 @@ export const Stake = () => {
             mode="unstake"
             tsTonRate={tsTonRate}
             min={0.01}
-            max={tonStakers.stakedBalance}
+            max={tonStakers.stakedBalance * tsTonRate}
           />
         ))
       }
