@@ -1,4 +1,4 @@
-import { Alert, Tab, Tabs } from '@mui/material';
+import { Alert, Box, Grid2, Tab, Tabs } from '@mui/material';
 import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 import { useState } from 'react';
 
@@ -34,9 +34,25 @@ export const Stake = () => {
     stakeError ||
     unstakeError;
 
+  if (!connected) {
+    return (
+      <Layout
+        tonConnect={
+          <Box position="fixed" left="50%" top="50%" sx={{ transform: 'translate(-50%, -50%)' }}>
+            <TonConnectButton />
+          </Box>
+        }
+      />
+    );
+  }
+
   return (
     <Layout
-      connected={connected}
+      tonConnect={
+        <Grid2 container justifyContent="flex-end" spacing={3}>
+          <TonConnectButton />
+        </Grid2>
+      }
       error={
         error && (
           <Alert variant="outlined" color="error">
@@ -44,22 +60,18 @@ export const Stake = () => {
           </Alert>
         )
       }
-      tonConnectButton={<TonConnectButton />}
       tabs={
-        connected && (
-          <Tabs
-            variant="fullWidth"
-            scrollButtons={false}
-            value={mode}
-            onChange={(_, value) => setMode(value)}
-          >
-            <Tab label="Stake" value={'stake'} />
-            <Tab label="Unstake" value={'unstake'} />
-          </Tabs>
-        )
+        <Tabs
+          variant="fullWidth"
+          scrollButtons={false}
+          value={mode}
+          onChange={(_, value) => setMode(value)}
+        >
+          <Tab label="Stake" value={'stake'} />
+          <Tab label="Unstake" value={'unstake'} />
+        </Tabs>
       }
       calculator={
-        connected &&
         tonStakers &&
         tsTonRate &&
         (mode === 'stake' ? (
@@ -83,15 +95,13 @@ export const Stake = () => {
         ))
       }
       info={
-        connected && (
-          <Info
-            walletBalance={walletBalance?.toFixed(2)}
-            availableBalance={tonStakers?.availableBalance.toFixed(2)}
-            tsTonRate={tsTonRate?.toFixed(4)}
-            tsTonPrice={Number(tsTonAsset?.dex_usd_price).toFixed(2)}
-            tonPrice={Number(tonAsset?.dex_usd_price).toFixed(2)}
-          />
-        )
+        <Info
+          walletBalance={walletBalance?.toFixed(2)}
+          availableBalance={tonStakers?.availableBalance.toFixed(2)}
+          tsTonRate={tsTonRate?.toFixed(4)}
+          tsTonPrice={Number(tsTonAsset?.dex_usd_price).toFixed(2)}
+          tonPrice={Number(tonAsset?.dex_usd_price).toFixed(2)}
+        />
       }
     />
   );
